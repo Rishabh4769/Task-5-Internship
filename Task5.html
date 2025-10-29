@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Task 5 Report - Capture & Analysis of Network Traffic</title>
+<style>
+    :root {
+        --primary: #1e293b;
+        --secondary: #0f766e;
+        --accent: #06b6d4;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+        --border: #e2e8f0;
+        --text: #1e293b;
+        --text-muted: #64748b;
+    }
+    * {
+        margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            'Helvetica Neue', sans-serif;
+        background: var(--light-bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding: 20px;
+    }
+    .container { max-width: 920px; margin: 0 auto; }
+    header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 40px 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(30, 41, 59, 0.2);
+    }
+    header h1 { font-size: 2.3rem; font-weight: 700; margin-bottom: 6px;}
+    header p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; }
+    .content { display: flex; flex-direction: column; gap: 24px; }
+    .card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 28px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid var(--border);
+    }
+    h2 {
+        color: var(--primary);
+        border-bottom: 2px solid var(--accent);
+        font-size: 1.6rem;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    h2::before {
+        content: "▸";
+        color: var(--accent);
+        font-size: 1.3rem;
+    }
+    ol, ul { margin: 12px 0; padding-left: 25px; }
+    li { margin: 8px 0; }
+    .step-image {
+        margin: 18px 0;
+        text-align: center;
+    }
+    .step-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .step-image img:hover {
+        transform: scale(1.02);
+    }
+    .protocol-output {
+        background: var(--light-bg);
+        padding: 16px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--text-muted);
+        white-space: pre-wrap;
+        overflow-x: auto;
+        margin: 16px 0;
+        border: 1px solid var(--border);
+    }
+    p, ul, ol { font-size: 1rem; }
+    footer {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Task 5 Report: Capture and Analyze Network Traffic</h1>
+        <p>Cyber Security Internship</p>
+    </header>
+
+    <div class="content">
+        <div class="card">
+            <h2>Step 1: Launch Wireshark</h2>
+            <p>Start the Wireshark application on your system.</p>
+            <div class="step-image">
+                <img src="images/init-wireshark.png" alt="Wireshark Launch Window">
+                <p class="step-image-caption">Wireshark main interface on launch</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Step 2: Select Network Interface</h2>
+            <p>Choose the active network interface (e.g. Wi-Fi) to start capturing packets on.</p>
+            <div class="step-image">
+                <img src="images/empty-screen.png" alt="Network Interface Selection">
+                <p class="step-image-caption">Screen after selecting the active Wi-Fi interface</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Step 3: Start Continuous Ping to Generate Traffic</h2>
+            <p>Open terminal and run the command to ping google.com continuously for 60 seconds to generate traffic:</p>
+            <div class="protocol-output">ping -c 60 google.com</div>
+            <div class="step-image">
+                <img src="images/ping-mid.png" alt="Ping Command Running">
+                <p class="step-image-caption">Continuous ping producing ICMP traffic</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Step 4: Capture and Stop</h2>
+            <p>Stop the Wireshark capture after the 60-second ping session is completed.</p>
+            <div class="step-image">
+                <img src="images/ping-server-process.png" alt="Stop Capture">
+                <p class="step-image-caption">Stopping the packet capture after ping duration</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Step 5: Save Captured Packets</h2>
+            <p>Export and save the captured packets as a <code>.pcap</code> file for analysis and documentation.</p>
+            <div class="step-image">
+                <img src="images/packet-capture-output.png" alt="Save PCAP File">
+                <p class="step-image-caption">Opening captured network packets file</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Step 6: Analyze Available Protocols</h2>
+            <p>Use Wireshark’s protocol hierarchy and filter features to view available protocols in the capture file.</p>
+            <div class="step-image">
+                <img src="images/udp-captures.png" alt="Protocol Hierarchy">
+                <img src="images/arp-captures.png" alt="Protocol Hierarchy">
+                <img src="images/mdns-captures.png" alt="Protocol Hierarchy">
+                <img src="images/icmp-captures.png" alt="Protocol Hierarchy">
+                <p class="step-image-caption">Protocols identified in the capture file</p>
+            </div>
+            <div class="protocol-output" contenteditable="true" spellcheck="false">
+Protocols observed:
+
+- UDP (User Datagram Protocol): Connectionless protocol used for time-sensitive transmissions such as streaming or domain lookups.
+- ARP (Address Resolution Protocol): Responsible for mapping IP addresses to MAC addresses on local network segments.
+- mDNS (Multicast DNS): Used for resolving hostnames to IP addresses within small networks without a conventional DNS server.
+- ICMP (Internet Control Message Protocol): Used for diagnostic and control purposes, mainly ping (echo request and reply).
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Summary</h2>
+            <p>
+                The task provided hands-on experience with network capture and analysis using Wireshark.
+                Generating packet traffic with ping ensured sufficient data for protocol identification.
+                Filtering and examining the capture revealed a variety of common network protocols and packet details.
+                Understanding these protocols aids in troubleshooting and network diagnostics.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Task 5 Report - Network Capture & Analysis | Cyber Security Internship</p>
+    </footer>
+</div>
+</body>
+</html>
